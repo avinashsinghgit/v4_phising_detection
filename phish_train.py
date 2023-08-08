@@ -60,4 +60,5 @@ acc_test_tree = accuracy_score(y_test,y_test_tree)
 # pickle.dump(tree, open('model.pkl','wb'))
 
 
-
+# import sklearn
+# print(sklearn.__version__)
