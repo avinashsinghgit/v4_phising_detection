@@ -10,7 +10,7 @@ import pickle
 
 
 import re
-import requests
+# import requests
 import pandas as pd
 
 
