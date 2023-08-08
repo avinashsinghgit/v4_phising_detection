@@ -30,8 +30,10 @@ from sklearn.metrics import accuracy_score
 from xgboost import XGBClassifier
 from sklearn.tree import DecisionTreeClassifier
 
-import pickle
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, confusion_matrix, precision_score, recall_score, ConfusionMatrixDisplay
 
+import pickle
 
 
 ###############********************* EDA *******************############
@@ -49,12 +51,18 @@ X_test,X_train,y_test,y_train = train_test_split(X_new,y,test_size=0.2,random_st
 
 
 ###############********************* Decision Tree *******************############
-tree = DecisionTreeClassifier(max_depth = 5)
-tree.fit(X_train, y_train)
-y_test_tree = tree.predict(X_test)
-y_train_tree = tree.predict(X_train)
-acc_train_tree = accuracy_score(y_train,y_train_tree)
-acc_test_tree = accuracy_score(y_test,y_test_tree)
+# tree = DecisionTreeClassifier(max_depth = 5)
+# tree.fit(X_train, y_train)
+
+rfc = RandomForestClassifier()
+rfc.fit(X_train, y_train)
+
+
+y_test_rfc = rfc.predict(X_test)
+y_train_rfc = rfc.predict(X_train)
+acc_train_rfc = accuracy_score(y_train,y_train_rfc)
+acc_test_rfc = accuracy_score(y_test,y_test_rfc)
+
 
 
 # pickle.dump(tree, open('model.pkl','wb'))

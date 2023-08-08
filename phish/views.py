@@ -6,7 +6,6 @@ from django.shortcuts import render, HttpResponse
 
 from joblib import dump
 import os
-
 import pickle
 
 
@@ -56,6 +55,9 @@ def index(request):
 def about(request):
     return HttpResponse("this is About Page")
 
+def report(request):
+    return render(request,"report_phish.html")
+
 
 
 
@@ -70,14 +72,15 @@ def about(request):
 
 def phish(url):
     ########################    Address Bar Based Features    ########################
+    
     # ip
     def ip(url):
         try:
             domain = url.split("//")[1].split("/")[0]  # Extracts the domain
             if domain.replace('.', '').replace(':', '').isnumeric():
                 return -1  # If the domain name contains only numerical values
-            # if domain.isalnum():
-            #     return -1  # To check in case of hexadecimal IP address value
+            if domain.isalnum():
+                return -1  # To check in case of hexadecimal IP address value
             else:
                 return 1
         except:
@@ -493,10 +496,22 @@ def phish(url):
         return input_df
     
     input_X_test = features(url)
-    output_y_test = tree.predict(input_X_test)
+    output_y_test = rfc.predict(input_X_test)
 #     print(output_y_test)
+
+    if output_y_test is not None:
+        if output_y_test == -1:
+            dict_output = {"Result":"Phising Website"}
+        elif output_y_test == 0:
+            dict_output = {"Result":"Suspicious Website"}
+        else:
+            dict_output = {"Result":"Legitimate Website"}
+    else:
+        dict_output = {"Result":"Failed to Fetch"}
     
-    return output_y_test
+    return dict_output
+    
+    
     
 
 
@@ -513,7 +528,7 @@ def search(request):
 
     if request.method == "POST":
 
-        model=pickle.load(open('model.pkl','rb'))
+        model = pickle.load(open('model.pkl','rb'))
         
         query = request.POST['q']  # Get the 'query' parameter from the URL
         print(query)
@@ -522,15 +537,15 @@ def search(request):
         results = phish(query)  # Call the Python function to process the query
         print(results)
 
-
-        if results == -1:
-            dict_output = {"Result" : "Phising"}
-        elif results == 0:
-            dict_output = {"Result" : "Suspicious"}
-        if results == 1:
-            dict_output = {"Result" : "Legitmate"}
-
-        return render(request, "result.html", {'results':dict_output})
+        if results is not None:
+            if results == 1:
+                output = "Legitmate"
+            elif results == 0:
+                output = "Suspicious"
+            else :
+                output = "Phising"
+                
+        return render(request, "result.html", {'results':output})
     
     return render(request, 'search.html')
 

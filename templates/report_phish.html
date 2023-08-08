@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Phishing</title>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Your Logo</div>
+            <ul class="menu">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="report.html">Report for Phish</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="report-section">
+            <h2>Report Phishing</h2>
+            <form id="report-form" action="/report_phish" method="POST">
+                <label for="phished-url">Phished URL:</label>
+                <input type="url" id="phished-url" name="phished_url" placeholder="Enter the URL" required>
+
+                <label for="email">Your Email:</label>
+                <input type="email" id="your-email" name="your_email" placeholder="Enter your Email" required>
+
+                <label for="comment">Comment:</label>
+                <textarea id="comment" name="comment" rows="4" placeholder="Why Phish??"></textarea>
+
+                <div id="recaptcha-container"></div>
+
+                <button type="submit">Submit Report</button>
+            </form>
+        </section>
+    </main>
+
+    <script src="report.js"></script>
+
+
+    <style>
+            /* Reset some default browser styles */
+            body, h1, h2, h3, p, ul, li {
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                font-family: Arial, sans-serif;
+            }
+
+            /* Header styles */
+            header {
+                background-color: #333;
+                color: #fff;
+                padding: 10px 0;
+            }
+
+            nav {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 20px;
+            }
+
+            .logo {
+                font-size: 24px;
+            }
+
+            .menu {
+                list-style: none;
+                display: flex;
+            }
+
+            .menu li {
+                margin-right: 20px;
+            }
+
+            .menu a {
+                text-decoration: none;
+                color: #fff;
+                transition: color 0.3s;
+            }
+
+            .menu a:hover {
+                color: #ff9900;
+            }
+
+            /* Form styles */
+            .report-section {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 20px;
+                border: 1px solid #ddd;
+                background-color: #f7f7f7;
+            }
+
+            .report-section h2 {
+                margin-bottom: 20px;
+            }
+
+            .report-section label {
+                display: block;
+                margin-bottom: 5px;
+                font-weight: bold;
+            }
+
+            .report-section input[type="url"],
+            .report-section input[type="email"],
+            .report-section textarea {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+
+            .report-section button[type="submit"] {
+                background-color: #ff9900;
+                color: #fff;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+
+            .report-section button[type="submit"]:hover {
+                background-color: #e68200;
+            }
+    </style>
+
+
+
+</body>
+</html>
