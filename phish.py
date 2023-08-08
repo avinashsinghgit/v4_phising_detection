@@ -57,7 +57,7 @@ acc_train_tree = accuracy_score(y_train,y_train_tree)
 acc_test_tree = accuracy_score(y_test,y_test_tree)
 
 
-pickle.dump(tree, open('model.pkl','wb'))
+# pickle.dump(tree, open('model.pkl','wb'))
 
 
 
