@@ -53,5 +53,5 @@ tzdata==2023.3
 urllib3==2.0.4
 webdriver-manager==4.0.0
 # wsproto==1.2.0
-xgboost==1.7.6
+# xgboost==1.7.6
 # zipp==3.16.2
