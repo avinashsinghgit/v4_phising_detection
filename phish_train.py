@@ -65,7 +65,7 @@ acc_test_rfc = accuracy_score(y_test,y_test_rfc)
 
 
 
-# pickle.dump(tree, open('model.pkl','wb'))
+# pickle.dump(rfc, open('model.pkl','wb'))
 
 
 # import sklearn

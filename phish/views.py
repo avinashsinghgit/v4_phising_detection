@@ -499,20 +499,20 @@ def phish(url):
     output_y_test = rfc.predict(input_X_test)
 #     print(output_y_test)
 
-    if output_y_test is not None:
-        if output_y_test == -1:
-            dict_output = {"Result":"Phising Website"}
-        elif output_y_test == 0:
-            dict_output = {"Result":"Suspicious Website"}
-        else:
-            dict_output = {"Result":"Legitimate Website"}
-    else:
-        dict_output = {"Result":"Failed to Fetch"}
+    # if output_y_test is not None:
+    #     if output_y_test == -1:
+    #         dict_output = {"Result":"Phising Website"}
+    #     elif output_y_test == 0:
+    #         dict_output = {"Result":"Suspicious Website"}
+    #     else:
+    #         dict_output = {"Result":"Legitimate Website"}
+    # else:
+    #     dict_output = {"Result":"Failed to Fetch"}
     
-    return dict_output
+    return output_y_test
     
     
-    
+
 
 
 
@@ -525,7 +525,6 @@ def phish(url):
 
 def search(request):
 
-
     if request.method == "POST":
 
         model = pickle.load(open('model.pkl','rb'))
@@ -537,13 +536,12 @@ def search(request):
         results = phish(query)  # Call the Python function to process the query
         print(results)
 
-        if results is not None:
-            if results == 1:
-                output = "Legitmate"
-            elif results == 0:
-                output = "Suspicious"
-            else :
-                output = "Phising"
+        if results == -1:
+            output = "Phising"
+        elif results == 0:
+            output = "Suspicious"
+        else :
+            output = "Legitmate"
                 
         return render(request, "result.html", {'results':output})
     
