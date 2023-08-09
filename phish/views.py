@@ -38,7 +38,7 @@ from sklearn.preprocessing import MinMaxScaler
 # Training
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
-from xgboost import XGBClassifier
+# from xgboost import XGBClassifier
 from sklearn.tree import DecisionTreeClassifier
 
 from phish_train import *

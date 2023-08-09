@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-@y_u$%6(a5z(90=s6=x_ydaq8xroey+g7+z4+n6t%+0=!)2j2#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['catch-the-phish-qgfr.onrender.com','127.0.0.1',]
+ALLOWED_HOSTS = ['catch-the-phish-qgfr.onrender.com','127.0.0.1','catch-the-phish-qgfr.onrender.com']
 
 
 # Application definition
