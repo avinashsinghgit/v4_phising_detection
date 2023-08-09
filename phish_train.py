@@ -68,5 +68,5 @@ acc_test_rfc = accuracy_score(y_test,y_test_rfc)
 # pickle.dump(rfc, open('model.pkl','wb'))
 
 
-# import sklearn
-# print(sklearn.__version__)
+import pandas as pd
+print(pd.__version__)
