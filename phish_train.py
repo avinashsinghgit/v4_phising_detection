@@ -34,35 +34,97 @@ from sklearn.metrics import accuracy_score, confusion_matrix, precision_score, r
 
 import pickle
 
-
-###############********************* EDA *******************############
-
-df = pd.read_csv("phising_dataset.csv").iloc[:,1:]
-df1 = df.iloc[:,:-1]
-x = df.iloc[:,:-1]
-y = df.iloc[:,-1]
-scaler=MinMaxScaler()  
-scaler.fit(x.values)  
-X_scaled=scaler.transform(x.values)   
-X_new = pd.DataFrame(X_scaled,columns=x.columns)
-X_test,X_train,y_test,y_train = train_test_split(X_new,y,test_size=0.2,random_state=50,shuffle=True,stratify=y)
+import re
+import requests
+import pandas as pd
+import numpy as np
 
 
+import whois
+import datetime
 
-###############********************* Decision Tree *******************############
-# tree = DecisionTreeClassifier(max_depth = 5)
-# tree.fit(X_train, y_train)
+from bs4 import BeautifulSoup
+from urllib.parse import urlparse, urljoin
 
-rfc = RandomForestClassifier()
-rfc.fit(X_train, y_train)
+# HTML and Javascript Based Features
+import warnings
 
-
-y_test_rfc = rfc.predict(X_test)
-y_train_rfc = rfc.predict(X_train)
-acc_train_rfc = accuracy_score(y_train,y_train_rfc)
-acc_test_rfc = accuracy_score(y_test,y_test_rfc)
-
+# Domain based features
+import whois
+from datetime import datetime
 
 
-# pickle.dump(rfc, open('model.pkl','wb'))
+# EDA
+import matplotlib.pyplot as plt
+
+
+# Normalization
+from sklearn.preprocessing import MinMaxScaler
+
+# Training
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+from xgboost import XGBClassifier
+from sklearn.tree import DecisionTreeClassifier
+
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, confusion_matrix, precision_score, recall_score, ConfusionMatrixDisplay
+from sklearn.model_selection import RepeatedStratifiedKFold
+
+from sklearn.model_selection import train_test_split
+from sklearn.model_selection import KFold
+from xgboost import XGBClassifier
+
+
+from sklearn.model_selection import train_test_split
+from sklearn.model_selection import KFold
+from xgboost import XGBClassifier
+
+
+from sklearn.metrics import classification_report
+from sklearn.metrics import confusion_matrix
+from sklearn.metrics import accuracy_score
+
+from sklearn.metrics import classification_report
+from sklearn.metrics import confusion_matrix
+from sklearn.metrics import accuracy_score
+
+# ###############********************* EDA *******************############
+
+df = pd.read_csv("/Users/avinash/Desktop/phising_dataset.csv").iloc[:,1:]
+for col in df.columns:
+    unique_value_list = df[col].unique()
+    if len(unique_value_list) > 10:
+        print(f'{col} has {df[col].nunique()} unique values')
+    else:
+        print(f'{col} contains:\t\t\t{unique_value_list}')
+        
+def binary_classification_accuracy(actual, pred):
+    
+    print(f'Confusion matrix: \n{confusion_matrix(actual, pred)}')
+    print(f'Accuracy score: \n{accuracy_score(actual, pred)}')
+    print(f'Classification report: \n{classification_report(actual, pred)}')
+    
+# Replacing -1 with 0 in the target variable
+df['Result'] = np.where(df['Result']==-1, 0, df['Result'])
+target = df['Result']
+features = df.drop(columns=['Result'])
+
+folds = KFold(n_splits=4, shuffle=True, random_state=42)
+
+train_index_list = list()
+validation_index_list = list()
+
+for fold, (train_idx, validation_idx) in enumerate(folds.split(features, target)):
+    model = XGBClassifier()
+    model.fit(np.array(features)[train_idx,:], np.array(target)[train_idx])
+    predicted_values = model.predict(np.array(features)[validation_idx,:])
+    print(f'==== FOLD {fold+1} ====')
+    binary_classification_accuracy(np.array(target)[validation_idx], predicted_values)
+
+
+
+# import pickle
+
+# pickle.dump(model, open('model.pkl','wb'))
 

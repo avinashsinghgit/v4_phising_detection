@@ -41,6 +41,64 @@ from sklearn.metrics import accuracy_score
 # from xgboost import XGBClassifier
 from sklearn.tree import DecisionTreeClassifier
 
+
+import re
+import requests
+import pandas as pd
+import numpy as np
+
+
+import whois
+import datetime
+
+from bs4 import BeautifulSoup
+from urllib.parse import urlparse, urljoin
+
+# HTML and Javascript Based Features
+import warnings
+
+# Domain based features
+import whois
+from datetime import datetime
+
+
+# EDA
+import matplotlib.pyplot as plt
+
+
+# Normalization
+from sklearn.preprocessing import MinMaxScaler
+
+# Training
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+from xgboost import XGBClassifier
+from sklearn.tree import DecisionTreeClassifier
+
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, confusion_matrix, precision_score, recall_score, ConfusionMatrixDisplay
+from sklearn.model_selection import RepeatedStratifiedKFold
+
+from sklearn.model_selection import train_test_split
+from sklearn.model_selection import KFold
+from xgboost import XGBClassifier
+
+
+from sklearn.model_selection import train_test_split
+from sklearn.model_selection import KFold
+from xgboost import XGBClassifier
+
+
+from sklearn.metrics import classification_report
+from sklearn.metrics import confusion_matrix
+from sklearn.metrics import accuracy_score
+
+from sklearn.metrics import classification_report
+from sklearn.metrics import confusion_matrix
+from sklearn.metrics import accuracy_score
+
+
+
 from phish_train import *
 
 
@@ -67,7 +125,6 @@ def report(request):
 #######################################################################################################################
 #######################################################################################################################
 #######################################################################################################################
-
 
 
 def phish(url):
@@ -467,7 +524,7 @@ def phish(url):
 
 #     url = input("Enter the url addresss : ")
     def features(url):
-
+        
         input_df = pd.DataFrame()
 
         input_data_dict = {'having_IPhaving_IP_Address' : ip(url) ,
@@ -496,23 +553,22 @@ def phish(url):
         return input_df
     
     input_X_test = features(url)
-    output_y_test = rfc.predict(input_X_test)
+    output_y_test = model.predict(input_X_test)
 #     print(output_y_test)
 
-    # if output_y_test is not None:
-    #     if output_y_test == -1:
-    #         dict_output = {"Result":"Phising Website"}
-    #     elif output_y_test == 0:
-    #         dict_output = {"Result":"Suspicious Website"}
-    #     else:
-    #         dict_output = {"Result":"Legitimate Website"}
-    # else:
-    #     dict_output = {"Result":"Failed to Fetch"}
+    if output_y_test is not None:
+        if output_y_test == -1:
+            dict_output = {"Result":"Phising Website"}
+        elif output_y_test == 0:
+            dict_output = {"Result":"Suspicious Website"}
+        else:
+            dict_output = {"Result":"Legitimate Website"}
+    else:
+        dict_output = {"Result":"Failed to Fetch"}
     
-    return output_y_test
+    return dict_output
     
     
-
 
 
 
