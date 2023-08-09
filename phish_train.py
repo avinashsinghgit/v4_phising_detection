@@ -37,7 +37,7 @@ import pickle
 
 ###############********************* EDA *******************############
 
-df = pd.read_csv("/Users/avinash/Desktop/phising_dataset.csv").iloc[:,1:]
+df = pd.read_csv("phising_dataset.csv").iloc[:,1:]
 df1 = df.iloc[:,:-1]
 x = df.iloc[:,:-1]
 y = df.iloc[:,-1]
