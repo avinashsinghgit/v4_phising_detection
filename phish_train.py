@@ -26,8 +26,8 @@ from sklearn.preprocessing import MinMaxScaler
 # Training
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
-from xgboost import XGBClassifier
-from sklearn.tree import DecisionTreeClassifier
+# from xgboost import XGBClassifier
+# from sklearn.tree import DecisionTreeClassifier
 
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, confusion_matrix, precision_score, recall_score, ConfusionMatrixDisplay
