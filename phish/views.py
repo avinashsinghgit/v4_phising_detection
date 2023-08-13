@@ -1,7 +1,6 @@
-from django.shortcuts import render
-
 # Create your views here.
 from django.shortcuts import render, HttpResponse
+from phish.models import Report
 # Create your views here.
 
 from joblib import dump
@@ -36,84 +35,37 @@ from datetime import datetime
 from sklearn.preprocessing import MinMaxScaler
 
 # Training
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
-# from xgboost import XGBClassifier
-from sklearn.tree import DecisionTreeClassifier
-
-
-import re
-import requests
-import pandas as pd
-import numpy as np
-
-
-import whois
-import datetime
-
-from bs4 import BeautifulSoup
-from urllib.parse import urlparse, urljoin
-
-# HTML and Javascript Based Features
-import warnings
-
-# Domain based features
-import whois
-from datetime import datetime
-
-
-# EDA
-import matplotlib.pyplot as plt
-
-
-# Normalization
-from sklearn.preprocessing import MinMaxScaler
-
-# Training
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
 from xgboost import XGBClassifier
-from sklearn.tree import DecisionTreeClassifier
-
+from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score, confusion_matrix, precision_score, recall_score, ConfusionMatrixDisplay
 from sklearn.model_selection import RepeatedStratifiedKFold
-
-from sklearn.model_selection import train_test_split
 from sklearn.model_selection import KFold
-from xgboost import XGBClassifier
-
-
-from sklearn.model_selection import train_test_split
-from sklearn.model_selection import KFold
-from xgboost import XGBClassifier
-
-
-from sklearn.metrics import classification_report
-from sklearn.metrics import confusion_matrix
-from sklearn.metrics import accuracy_score
-
-from sklearn.metrics import classification_report
-from sklearn.metrics import confusion_matrix
-from sklearn.metrics import accuracy_score
-
-
-
-from phish_train import *
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report, precision_score, recall_score, ConfusionMatrixDisplay
 
 
 # import sklearn
 # print(sklearn.__version__)
 
 
-
 def index(request):
     return render(request,"index.html")
 
-def about(request):
-    return HttpResponse("this is About Page")
+def home(request):
+    return render(request,"home.html")
 
 def report(request):
+
+    if request.method=="POST":
+
+        obj_report = Report()
+        obj_report.name = request.POST.get("name")
+        obj_report.url = request.POST.get("url")
+        obj_report.email = request.POST.get("email")
+        obj_report.message = request.POST.get("message")
+        obj_report.save()
+
+        return render(request,"response_report_phish.html")
+
     return render(request,"report_phish.html")
 
 
@@ -316,7 +268,6 @@ def phish(url):
     # Non-Standard Ports
     def has_non_standard_port(url):
         try: 
-            f
             # Regular expression to extract the port number from the URL
             port_regex = r':(\d+)/'
 
@@ -556,17 +507,17 @@ def phish(url):
     output_y_test = model.predict(input_X_test)
 #     print(output_y_test)
 
-    if output_y_test is not None:
-        if output_y_test == -1:
-            dict_output = {"Result":"Phising Website"}
-        elif output_y_test == 0:
-            dict_output = {"Result":"Suspicious Website"}
-        else:
-            dict_output = {"Result":"Legitimate Website"}
-    else:
-        dict_output = {"Result":"Failed to Fetch"}
+    # if output_y_test is not None:
+    #     if output_y_test == -1:
+    #         dict_output = {"Result":"Phising Website"}
+    #     elif output_y_test == 0:
+    #         dict_output = {"Result":"Suspicious Website"}
+    #     else:
+    #         dict_output = {"Result":"Legitimate Website"}
+    # else:
+    #     dict_output = {"Result":"Failed to Fetch"}
     
-    return dict_output
+    return output_y_test
     
     
 
@@ -581,26 +532,30 @@ def phish(url):
 
 def search(request):
 
-    if request.method == "POST":
+    try:
 
-        model = pickle.load(open('model.pkl','rb'))
-        
-        query = request.POST['q']  # Get the 'query' parameter from the URL
-        print(query)
-        print("phish to be upcoming")
+        if request.method == "POST":
+
+            model = pickle.load(open('model.pkl','rb'))
             
-        results = phish(query)  # Call the Python function to process the query
-        print(results)
-
-        if results == -1:
-            output = "Phising"
-        elif results == 0:
-            output = "Suspicious"
-        else :
-            output = "Legitmate"
+            query = request.POST['q']  # Get the 'query' parameter from the URL
+            print(query)
+            print("phish to be upcoming")
                 
-        return render(request, "result.html", {'results':output})
-    
+            results = phish(query)  # Call the Python function to process the query
+            print(results)
+
+            if results == -1:
+                output = "Phising"
+            elif results == 0:
+                output = "Suspicious"
+            else :
+                output = "Legitmate"
+                    
+            return render(request, "result.html", {'results':output})
+    except:
+        return "Please enter correct format of URL"
+        
     return render(request, 'search.html')
 
 

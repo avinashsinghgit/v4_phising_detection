@@ -1,79 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us</title>
 
-
-    <style>
-        
-        body {
-            font-family: Arial, sans-serif;
-            margin: 10rem;
-            padding: 20px;
-            background-color: #f0f0f0;
-        }
-        
-        div.contact-form{
-            margin-top:2rem;
-        }
-
-
-        .contact-form {
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 20px;
-            border-radius: 5px;
-            background-color: white;
-            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-            color: #333;
-        }
-
-        .form-input,
-        .form-textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            color: #333;
-            background-color: #f8f8f8;
-        }
-
-        .form-textarea {
-            resize: vertical;
-        }
-
-        .form-button {
-            background-color: #333;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .form-button:hover {
-            background-color: #555;
-        }
-    </style>
-</head>
-<body>
-
-
-
-        <!--  ####################################  Navabar    #################################### -->
+<!--  ####################################  Navabar    #################################### -->
 
 <div class="navbar">
     <a href="#" class="navbar-logo">
@@ -91,23 +17,25 @@
         <a href="../search/">Search for Phish</a>
         <a href="../report_phish/">Report Phish</a>
     </div>
-  </div>
-  
-  <script>
+    </div>
+    <div>
+    </div>
+    
+    <script>
     function toggleMenu() {
         var navbarLinks = document.getElementById("navbarLinks");
         navbarLinks.classList.toggle("active");
     }
-  </script>
-  
-  
-  <style>
+    </script>
+    
+    
+    <style>
     body {
         font-family: Arial, sans-serif;
         margin: 0;
         padding: 0;
     }
-  
+    
     .navbar {
         background-color: #333;
         overflow: hidden;
@@ -118,7 +46,7 @@
         box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
         height: 70px;
     }
-  
+    
     .navbar-logo {
         display: inline-block;
         color: white;
@@ -127,13 +55,13 @@
         text-decoration: none;
         margin-right: auto; /* Pushes the logo to the left */
     }
-  
+    
     .navbar-logo img {
         width: 40px;
         height: auto;
         vertical-align: middle;
     }
-  
+    
     .navbar a {
         padding:3rem;
         color: white;
@@ -141,22 +69,22 @@
         text-decoration: none;
         transition: background-color 0.3s, color 0.3s;
     }
-  
+    
     .navbar a:hover {
         background-color: #555;
     }
-  
+    
     .navbar-menu {
         display: none;
         cursor: pointer;
         font-size: 32px; /* Adjust the font size */
     }
-  
+    
     /* Increase the gap between navigation items */
     .navbar a + a {
         margin-left: auto; /* Adjust the value as needed */
     }
-  
+    
     /* Styling for hamburger icon */
     .hamburger {
         display: flex;
@@ -166,39 +94,39 @@
         height: 25px;
         cursor: pointer;
     }
-  
+    
     .hamburger div {
         width: 30px;
         height: 5px;
         background-color: white;
     }
-
+    
     /* Responsive styles */
     @media screen and (max-width: 550px) {
-  
+    
         html{
             margin-right:0.01rem;
         }
-  
+    
         .navbar {
             flex-direction: column;
             align-items: flex-start;
             padding: 10px; /* Add padding to the whole navbar */
         }
-  
+    
         .navbar-logo {
             margin-right: 0; /* Reset margin for logo */
             margin-bottom: 10px; /* Add spacing below logo */
         }
-  
+    
         .navbar-menu {
             display: flex;
             align-items: center; /* Center the hamburger icon */
             margin-left: auto; /* Pushes the menu to the right */
             margin-bottom: 10px; /* Add spacing below menu */
         }
-  
-  
+    
+    
         .navbar-links {
             margin-top: 1.2rem;
             display: none;
@@ -212,14 +140,14 @@
             transform: translateX(-100%); /* Hide off-screen initially */
             transition: transform 0.3s ease-in-out; /* Add smooth transition */
         }
-  
+    
         .navbar-links.active {
             transform: translateX(0); /* Slide in the menu */
             display: flex;
             flex-direction: column; /* Stack items vertically */
             align-items: flex-start; /* Align items to the left */
         }
-  
+    
         .navbar-links a {
             color: white;
             text-align: center;
@@ -227,52 +155,47 @@
             text-decoration: none;
             width: 100%; /* Make each link full width */
         }
-  
-  
+    
+    
         .navbar-links a:hover {
             background-color: #555;
         }
     }
-  </style>
-  
-  
+    </style>
+    
+    
     <!--  ####################################  Navabar    #################################### -->
 
 
-
-
-
-
-
-<div class="contact-form">
-    <h2>Contact Us</h2>
-    <form action="#" method="POST">
-        {% csrf_token %}
-        <div class="form-group">
-            <label for="name" class="form-label">Enter your Name:</label>
-            <input type="name" id="name" name="name" class="form-input" required>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            /* ... (your existing CSS styles) ... */
+        </style>
+        <title>Thanks for Reporting</title>
+    </head>
+    <body>
+        <div class="container">
+            <h1 id="message"> </h1>
         </div>
-        <div class="form-group">
-            <label for="url" class="form-label">URL:</label>
-            <input type="url" id="url" name="url" class="form-input" required>
-        </div>
-        <div class="form-group">
-            <label for="email" class="form-label">Email:</label>
-            <input type="email" id="email" name="email" class="form-input" required>
-        </div>
-        <div class="form-group">
-            <label for="message" class="form-label">Why Phish??:</label>
-            <textarea id="message" name="message" class="form-textarea" rows="5" required></textarea>
-        </div>
-        <button type="submit" class="form-button">Submit</button>
-    </form>
-</div>
-
-
-
-
-
-
-
-</body>
-</html>
+        <script>
+            const messageElement = document.getElementById('message');
+            const messageText = "Thanks for Reporting";
+            let currentChar = 0;
+    
+            function typeMessage() {
+                if (currentChar < messageText.length) {
+                    messageElement.textContent += messageText.charAt(currentChar);
+                    currentChar++;
+                    setTimeout(typeMessage, 100);
+                }
+            }
+    
+            typeMessage();
+        </script>
+    </body>
+    </html>
+    

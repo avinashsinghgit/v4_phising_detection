@@ -3,23 +3,133 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Full Page Animation</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Particle Animation with Button</title>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    #particles-js {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: #141414;
+    }
+
+    .button-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .custom-button {
+      background: linear-gradient(45deg, #3498db, #e74c3c);
+      color: white;
+      border: none;
+      padding: 15px 30px; /* Slightly increased dimensions */
+      font-size: 18px; /* Slightly increased font size */
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .custom-button:hover {
+      background: linear-gradient(45deg, #2980b9, #e74c3c);
+      transform: scale(1.05);
+    }
+
+    .custom-button:active {
+      background: linear-gradient(45deg, #2980b9, #e74c3c);
+      transform: scale(0.95);
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    /* Loading Overlay */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      display: none;
+    }
+
+    .loading-text {
+      color: white;
+      font-size: 24px;
+    }
+  </style>
 </head>
 <body>
-  <div class="full-page-animation">
-    <h1>Welcome to Our Website</h1>
-    <p>Discover amazing things here!</p>
+  <div id="particles-js"></div>
+  <div class="button-container">
+    <a href="../search/">
+      <button class="custom-button" onclick="showLoading()">Welcome</button>
+    </a>
   </div>
-
-  <div>
-    <button> <a href  ="search/"> Search for Phish?? </a></button>
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-text">Loading...</div>
   </div>
+  <script>
+    particlesJS('particles-js', {
+      particles: {
+        number: {
+          value: 120, // Increase the number of particles
+          density: {
+            enable: true,
+            value_area: 1000
+          }
+        },
+        size: {
+          value: 4, // Increase particle size
+          random: true,
+          anim: {
+            enable: false,
+            speed: 40,
+            size_min: 0.1,
+            sync: false
+          }
+        },
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: "#ffffff",
+          opacity: 0.4,
+          width: 1
+        },
+        // Other particle properties here
+      },
+      // Other particle animation configuration here
+    });
 
-  <div>
-    <button> <a href  ="report_phish/"> #### Report for Phish #### </a></button>
-  </div>
-
-
+    function showLoading() {
+      document.getElementById('loadingOverlay').style.display = 'flex';
+      setTimeout(() => {
+        // Add your redirection code here
+        // window.location.href = '../search/';
+      }, 1000); // Simulating a 1-second loading time
+    }
+  </script>
 </body>
 </html>

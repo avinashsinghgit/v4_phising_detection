@@ -1,6 +1,12 @@
 from django.db import models
 
+
 # Create your models here.
-class report(models.Model):
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)
+class Report(models.Model):
+    name = models.CharField(max_length=200)
+    url = models.URLField()
+    email = models.EmailField()
+    message = models.TextField()
+    def __str__(self):
+        return self.name
+    

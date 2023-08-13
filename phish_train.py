@@ -1,43 +1,15 @@
-import re
-import requests
-import pandas as pd
+# Create your views here.
+from django.shortcuts import render, HttpResponse
+# Create your views here.
 
-
-import whois
-import datetime
-
-from bs4 import BeautifulSoup
-from urllib.parse import urlparse, urljoin
-
-# HTML and Javascript Based Features
-import warnings
-
-# Domain based features
-import whois
-from datetime import datetime
-
-
-# EDA
-
-
-# Normalization
-from sklearn.preprocessing import MinMaxScaler
-
-# Training
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
-# from xgboost import XGBClassifier
-# from sklearn.tree import DecisionTreeClassifier
-
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score, confusion_matrix, precision_score, recall_score, ConfusionMatrixDisplay
-
+from joblib import dump
+import os
 import pickle
 
+
 import re
-import requests
+# import requests
 import pandas as pd
-import numpy as np
 
 
 import whois
@@ -55,39 +27,20 @@ from datetime import datetime
 
 
 # EDA
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 
 
 # Normalization
 from sklearn.preprocessing import MinMaxScaler
 
 # Training
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
 from xgboost import XGBClassifier
-from sklearn.tree import DecisionTreeClassifier
-
+from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score, confusion_matrix, precision_score, recall_score, ConfusionMatrixDisplay
 from sklearn.model_selection import RepeatedStratifiedKFold
-
-from sklearn.model_selection import train_test_split
 from sklearn.model_selection import KFold
-from xgboost import XGBClassifier
-
-
-from sklearn.model_selection import train_test_split
-from sklearn.model_selection import KFold
-from xgboost import XGBClassifier
-
-
-from sklearn.metrics import classification_report
-from sklearn.metrics import confusion_matrix
-from sklearn.metrics import accuracy_score
-
-from sklearn.metrics import classification_report
-from sklearn.metrics import confusion_matrix
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report, precision_score, recall_score, ConfusionMatrixDisplay
+ 
 
 # ###############********************* EDA *******************############
 

@@ -7,6 +7,177 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+
+
+    <!--  ####################################  Navabar    #################################### -->
+
+<div class="navbar">
+  <a href="#" class="navbar-logo">
+      <img src="../fish.jpg" alt="Logo">
+  </a>
+  <div class="navbar-menu" onclick="toggleMenu()">
+      <div class="hamburger">
+          <div></div>
+          <div></div>
+          <div></div>
+      </div>
+  </div>
+  <div class="navbar-links" id="navbarLinks">
+      <a href="../home/">Home</a>
+      <a href="../search/">Search for Phish</a>
+      <a href="../report_phish/">Report Phish</a>
+  </div>
+</div>
+
+<script>
+  function toggleMenu() {
+      var navbarLinks = document.getElementById("navbarLinks");
+      navbarLinks.classList.toggle("active");
+  }
+</script>
+
+
+<style>
+  body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+  }
+
+  .navbar {
+      background-color: #333;
+      overflow: hidden;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+      height: 70px;
+  }
+
+  .navbar-logo {
+      display: inline-block;
+      color: white;
+      font-weight: bold;
+      font-size: 24px;
+      text-decoration: none;
+      margin-right: auto; /* Pushes the logo to the left */
+  }
+
+  .navbar-logo img {
+      width: 40px;
+      height: auto;
+      vertical-align: middle;
+  }
+
+  .navbar a {
+      padding:3rem;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      transition: background-color 0.3s, color 0.3s;
+  }
+
+  .navbar a:hover {
+      background-color: #555;
+  }
+
+  .navbar-menu {
+      display: none;
+      cursor: pointer;
+      font-size: 32px; /* Adjust the font size */
+  }
+
+  /* Increase the gap between navigation items */
+  .navbar a + a {
+      margin-left: auto; /* Adjust the value as needed */
+  }
+
+  /* Styling for hamburger icon */
+  .hamburger {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 30px;
+      height: 25px;
+      cursor: pointer;
+  }
+
+  .hamburger div {
+      width: 30px;
+      height: 5px;
+      background-color: white;
+  }
+
+  /* Responsive styles */
+  @media screen and (max-width: 550px) {
+
+      html{
+          margin-right:0.01rem;
+      }
+
+      .navbar {
+          flex-direction: column;
+          align-items: flex-start;
+          padding: 10px; /* Add padding to the whole navbar */
+      }
+
+      .navbar-logo {
+          margin-right: 0; /* Reset margin for logo */
+          margin-bottom: 10px; /* Add spacing below logo */
+      }
+
+      .navbar-menu {
+          display: flex;
+          align-items: center; /* Center the hamburger icon */
+          margin-left: auto; /* Pushes the menu to the right */
+          margin-bottom: 10px; /* Add spacing below menu */
+      }
+
+
+      .navbar-links {
+          margin-top: 1.2rem;
+          display: none;
+          background-color: #333;
+          width: 100%; /* Set a fixed width to prevent resizing */
+          box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+          position: absolute;
+          top: 70px;
+          left: 0;
+          padding: 0; /* Reset padding */
+          transform: translateX(-100%); /* Hide off-screen initially */
+          transition: transform 0.3s ease-in-out; /* Add smooth transition */
+      }
+
+      .navbar-links.active {
+          transform: translateX(0); /* Slide in the menu */
+          display: flex;
+          flex-direction: column; /* Stack items vertically */
+          align-items: flex-start; /* Align items to the left */
+      }
+
+      .navbar-links a {
+          color: white;
+          text-align: center;
+          padding: 15px; /* Increase padding for better touch experience */
+          text-decoration: none;
+          width: 100%; /* Make each link full width */
+      }
+
+
+      .navbar-links a:hover {
+          background-color: #555;
+      }
+  }
+</style>
+
+
+  <!--  ####################################  Navabar    #################################### -->
+
+
+
+
   <div class="full-page-animation">
     <h1>Welcome Results</h1>
     

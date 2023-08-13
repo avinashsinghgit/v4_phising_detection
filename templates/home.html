@@ -1,79 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-    <style>
-        
-        body {
-            font-family: Arial, sans-serif;
-            margin: 10rem;
-            padding: 20px;
-            background-color: #f0f0f0;
-        }
-        
-        div.contact-form{
-            margin-top:2rem;
-        }
-
-
-        .contact-form {
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 20px;
-            border-radius: 5px;
-            background-color: white;
-            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-            color: #333;
-        }
-
-        .form-input,
-        .form-textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            color: #333;
-            background-color: #f8f8f8;
-        }
-
-        .form-textarea {
-            resize: vertical;
-        }
-
-        .form-button {
-            background-color: #333;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .form-button:hover {
-            background-color: #555;
-        }
-    </style>
-</head>
-<body>
-
-
-
-        <!--  ####################################  Navabar    #################################### -->
+     <!--  ####################################  Navabar    #################################### -->
 
 <div class="navbar">
     <a href="#" class="navbar-logo">
@@ -172,7 +104,7 @@
         height: 5px;
         background-color: white;
     }
-
+  
     /* Responsive styles */
     @media screen and (max-width: 550px) {
   
@@ -238,41 +170,89 @@
   
     <!--  ####################################  Navabar    #################################### -->
 
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phishing Awareness</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+      color: #333;
+    }
 
+    header {
+      background-color: #3498db;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
 
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: white;
+      border-radius: 5px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
 
+    h1, h2 {
+      margin-top: 0;
+    }
 
+    p {
+      line-height: 1.6;
+    }
 
+    ul {
+      list-style-type: disc;
+      margin-left: 20px;
+    }
 
-<div class="contact-form">
-    <h2>Contact Us</h2>
-    <form action="#" method="POST">
-        {% csrf_token %}
-        <div class="form-group">
-            <label for="name" class="form-label">Enter your Name:</label>
-            <input type="name" id="name" name="name" class="form-input" required>
-        </div>
-        <div class="form-group">
-            <label for="url" class="form-label">URL:</label>
-            <input type="url" id="url" name="url" class="form-input" required>
-        </div>
-        <div class="form-group">
-            <label for="email" class="form-label">Email:</label>
-            <input type="email" id="email" name="email" class="form-input" required>
-        </div>
-        <div class="form-group">
-            <label for="message" class="form-label">Why Phish??:</label>
-            <textarea id="message" name="message" class="form-textarea" rows="5" required></textarea>
-        </div>
-        <button type="submit" class="form-button">Submit</button>
-    </form>
-</div>
+    footer {
+      text-align: center;
+      padding: 10px;
+      background-color: #3498db;
+      color: white;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Phishing Awareness</h1>
+    <p>Protect Yourself from Online Threats</p>
+  </header>
+  <div class="container">
+    <h2>What is Phishing?</h2>
+    <p>Phishing is a type of cyber attack where attackers use deceptive tactics to steal sensitive information. They often impersonate legitimate entities through emails, websites, or messages to trick individuals into revealing personal data, passwords, or financial details.</p>
 
+    <h2>How to Recognize Phishing</h2>
+    <p>Stay vigilant and watch out for these signs:</p>
+    <ul>
+      <li>Misspelled or suspicious sender email addresses.</li>
+      <li>Urgent requests for personal or financial information.</li>
+      <li>Links that seem unusual or lead to unfamiliar websites.</li>
+      <li>Attachments from unknown sources.</li>
+    </ul>
 
-
-
-
-
-
+    <h2>Protect Yourself</h2>
+    <p>Take proactive steps to safeguard your online presence:</p>
+    <ul>
+      <li>Keep your software and devices up to date.</li>
+      <li>Use strong, unique passwords for each account.</li>
+      <li>Enable two-factor authentication (2FA).</li>
+      <li>Regularly review your accounts for unauthorized activity.</li>
+      <li>Trust your instincts; if something seems off, verify it independently.</li>
+    </ul>
+  </div>
+  <footer>
+    <p>&copy; 2023 Phishing Awareness</p>
+  </footer>
 </body>
 </html>

@@ -3,110 +3,267 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple HTML Site with Search Query</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            height: 100vh;
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
-
-        h1 {
-            margin-top: 10px;
-        }
-
-        form {
-            text-align: center;
-            border: 2px solid #ccc;
-            padding: 10px;
-            border-radius: 5px;
-            background-color: #f9f9f9;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-        }
-
-        label {
-            font-size: 16px;
-            font-weight: bold;
-        }
-
-        input[type="text"] {
-            padding: 5px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-            width: 250px;
-            margin: 0 5px;
-        }
-
-        button {
-            padding: 5px 15px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-
-        #searchResults {
-            margin-top: 20px;
-            text-align: center;
-            
-        }
 
 
+<!--  ####################################  Navabar    #################################### -->
 
-        @media screen and (max-width: 383px){
-        body{
-            background-image: url("../DreamShaper_v5_a_complex_logo_for_the_cyber_security_app_0.png");
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center center; 
-            background-attachment: fixed;
-            /* opacity: 0.5; */
-            width:56rem;
-            margin-RIGHT:50rem;
-            height:86rem;
-            margin-top:1rem;
+<div class="navbar">
+<a href="#" class="navbar-logo">
+    <img src="../fish.jpg" alt="Logo">
+</a>
 
-        }
-        h1{
-            justify-content: center; /* Centering Horizantly */
-            align-items: center; 
-            font-size: 3rem;
-            color: rgb(237, 230, 230);
-        }
-        .form{
-            /* font-size:4rem; */
-            height:100px;
-            width:100px;
-        }
-         }
+<div class="navbar-menu" onclick="toggleMenu()">
+    <div class="hamburger">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+
+<div class="navbar-links" id="navbarLinks">
+    <a href="../home/">Home</a>
+    <a href="../search/">Search for Phish</a>
+    <a href="../report_phish/">Report Phish</a>
+</div>
+</div>
+
+<h1 class="title">Simple HTML Site with Search Query</h1>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <label for="searchInput">Search:</label>
+    <input type="text" id="searchInput" name="q" placeholder="Enter your search query...">
+    <button type="submit">Search</button>
+</form>
+
+<div id="searchResults">
+    <!-- The search results will be displayed here -->
+</div>
+  
+
+<script>
+function toggleMenu() {
+    var navbarLinks = document.getElementById("navbarLinks");
+    navbarLinks.classList.toggle("active");
+}
+</script>
+  
+
+
+<style>
+
+body {
+    display: flex;
+    font-family: Arial, sans-serif;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    background-color: #333;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    height: 70px;
+}
+
+.navbar-logo {
+    display: inline-block;
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+    text-decoration: none;
+    margin-right: auto; /* Pushes the logo to the left */
+}
+
+.navbar-logo img {
+    width: 40px;
+    height: auto;
+    vertical-align: middle;
+}
+
+.navbar a {
+    padding:3rem;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar a:hover {
+    background-color: #555;
+}
+
+.navbar-menu {
+    display: none;
+    cursor: pointer;
+    font-size: 32px; /* Adjust the font size */
+}
+
+/* Increase the gap between navigation items */
+.navbar a + a {
+    margin-left: auto; /* Adjust the value as needed */
+}
+
+/* Responsive styles */
+@media screen and (max-width: 550px) {
+
+    html{
+        margin-right:0.01rem;
+    }
+
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px; /* Add padding to the whole navbar */
+    }
+
+    .navbar-logo {
+        margin-right: 0; /* Reset margin for logo */
+        margin-bottom: 10px; /* Add spacing below logo */
+    }
+
+    .navbar-menu {
+        display: flex;
+        align-items: center; /* Center the hamburger icon */
+        margin-left: auto; /* Pushes the menu to the right */
+        margin-bottom: 10px; /* Add spacing below menu */
+    }
+
+
+    .navbar-links {
+        margin-top: 1.2rem;
+        display: none;
+        background-color: #333;
+        width: 100%; /* Set a fixed width to prevent resizing */
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        position: absolute;
+        top: 70px;
+        left: 0;
+        padding: 0; /* Reset padding */
+        transform: translateX(-100%); /* Hide off-screen initially */
+        transition: transform 0.3s ease-in-out; /* Add smooth transition */
+    }
+
+    .navbar-links.active {
+        transform: translateX(0); /* Slide in the menu */
+        display: flex;
+        flex-direction: column; /* Stack items vertically */
+        align-items: flex-start; /* Align items to the left */
+    }
+
+    .navbar-links a {
+        color: white;
+        text-align: center;
+        padding: 15px; /* Increase padding for better touch experience */
+        text-decoration: none;
+        width: 100%; /* Make each link full width */
+    }
+
+
+    .navbar-links a:hover {
+        background-color: #555;
+    }
+
+
+    /* Styling for hamburger icon */
+    .hamburger {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 25px;
+        cursor: pointer;
+    }
+
+    .hamburger div {
+        width: 30px;
+        height: 5px;
+        background-color: white;
+    }
+
+
+
+}
+</style>
+
+
+<!--  ####################################  Navabar    #################################### -->
+
+
+<style>
+
+.title{
+    text-align: center;
+    margin-top: 5rem;
+    justify-content: center;
+    align-items: center;
+
+}
+
+h1 {
+    margin-top: 10px;
+}
+
+form {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    /* width:40rem; */
+    border: 2px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    
+    font-size: 16px;
+    font-weight: bold;
+}
+
+input[type="text"] {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 250px;
+    margin: 0 5px;
+}
+
+button {
+    padding: 5px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#searchResults {
+    margin-top: 20px;
+    text-align: center;
+    
+}
 
 
 
 
-    </style>
+
+</style>
 
 </head>
-<body>
-    <h1>Simple HTML Site with Search Query</h1>
-
-    <form action="" method="POST">
-        {% csrf_token %}
-        <label for="searchInput">Search:</label>
-        <input type="text" id="searchInput" name="q" placeholder="Enter your search query...">
-        <button type="submit">Search</button>
-    </form>
-
-    <div id="searchResults">
-        <!-- The search results will be displayed here -->
-    </div>
-</body>
 </html>
