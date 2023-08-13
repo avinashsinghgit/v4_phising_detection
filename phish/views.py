@@ -1,6 +1,6 @@
 # Create your views here.
 from django.shortcuts import render, HttpResponse
-from phish.models import Report
+# from phish.models import Report
 # Create your views here.
 
 from joblib import dump
@@ -41,6 +41,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import RepeatedStratifiedKFold
 from sklearn.model_selection import KFold
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report, precision_score, recall_score, ConfusionMatrixDisplay
+
 
 
 # import sklearn
