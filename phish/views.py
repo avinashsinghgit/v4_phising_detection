@@ -43,7 +43,6 @@ from sklearn.model_selection import KFold
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report, precision_score, recall_score, ConfusionMatrixDisplay
 
 
-
 # import sklearn
 # print(sklearn.__version__)
 
