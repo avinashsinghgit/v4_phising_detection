@@ -8,8 +8,8 @@ import pickle
 
 
 import re
-# import requests
 import pandas as pd
+import numpy as np
 
 
 import whois
@@ -24,11 +24,6 @@ import warnings
 # Domain based features
 import whois
 from datetime import datetime
-
-
-# EDA
-# import matplotlib.pyplot as plt
-
 
 # Normalization
 from sklearn.preprocessing import MinMaxScaler

@@ -179,11 +179,85 @@
 
 
   <div class="full-page-animation">
-    <h1>Welcome Results</h1>
+    <h1>Your Searched Result</h1>
     
-    {{ results }}
+    <h2> {{ results }} </h2>
     
     <p>Discover amazing things here!</p>
+    <h3> Not satisfied with our Prediction ?? </h3>
+    <a href="../report_phish"> <button>Report</button>
+    </a>
   </div>
+
+
+  <style>
+
+    /* Apply styles to the full-page-animation container */
+.full-page-animation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  background-color: #f0f0f0;
+  font-family: Arial, sans-serif;
+  padding-top: 20rem; /* Add padding to create space from the top */
+}
+
+/* Style for the Welcome Results heading */
+h1 {
+  font-size: 2rem;
+  margin-top: -40rem;
+}
+
+/* Style for the results section */
+.results {
+  font-size: 1.2rem;
+  margin: 20px 0;
+}
+
+/* Style for the description paragraph */
+p {
+  font-size: 1rem;
+  margin: 10px 0;
+}
+
+/* Style for the secondary heading */
+h2 {
+  font-size: 3rem;
+  margin: 20px 0;
+}
+
+h3 {
+  font-size: 1.5rem;
+  margin: 20px 0;
+}
+
+/* Style for the report button */
+.button-container {
+  margin-top: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+a {
+  text-decoration: none;
+}
+
+
+  </style>
+
 </body>
 </html>

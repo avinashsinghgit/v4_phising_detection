@@ -1,6 +1,7 @@
 # Create your views here.
 from django.shortcuts import render, HttpResponse
-# from phish.models import Report
+from phish.models import Report
+
 # Create your views here.
 
 from joblib import dump
@@ -9,7 +10,7 @@ import pickle
 
 
 import re
-# import requests
+import requests
 import pandas as pd
 
 
@@ -28,7 +29,6 @@ from datetime import datetime
 
 
 # EDA
-# import matplotlib.pyplot as plt
 
 
 # Normalization
@@ -42,6 +42,8 @@ from sklearn.model_selection import RepeatedStratifiedKFold
 from sklearn.model_selection import KFold
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report, precision_score, recall_score, ConfusionMatrixDisplay
 
+model = pickle.load(open('model.pkl','rb'))
+from django.contrib import messages
 
 # import sklearn
 # print(sklearn.__version__)
@@ -67,7 +69,6 @@ def report(request):
         return render(request,"response_report_phish.html")
 
     return render(request,"report_phish.html")
-
 
 
 
@@ -452,7 +453,6 @@ def phish(url):
     
 
     
-    
     ###############********************* Testing *******************############
     input_df = pd.DataFrame(columns = ['having_IPhaving_IP_Address',
                                'URLURL_Length',
@@ -532,19 +532,17 @@ def phish(url):
 
 def search(request):
 
-    try:
 
-        if request.method == "POST":
+    if request.method == "POST":
 
-            model = pickle.load(open('model.pkl','rb'))
-            
-            query = request.POST['q']  # Get the 'query' parameter from the URL
-            print(query)
-            print("phish to be upcoming")
-                
+        
+        query = request.POST['q']  # Get the 'query' parameter from the URL
+        print(query)
+        print("phish to be upcoming")
+
+        try:
             results = phish(query)  # Call the Python function to process the query
             print(results)
-
             if results == -1:
                 output = "Phising"
             elif results == 0:
@@ -553,8 +551,9 @@ def search(request):
                 output = "Legitmate"
                     
             return render(request, "result.html", {'results':output})
-    except:
-        return "Please enter correct format of URL"
+        except:
+            return HttpResponse("Please Enter correct format of URL")
+
         
     return render(request, 'search.html')
 
