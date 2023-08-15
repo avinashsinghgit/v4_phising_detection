@@ -75,9 +75,10 @@
 
         <!--  ####################################  Navabar    #################################### -->
 
+{% load static %}
 <div class="navbar">
     <a href="#" class="navbar-logo">
-        <img src="../fish.jpg" alt="Logo">
+        <img src="{% static 'fish.jpg' %}" />
     </a>
     <div class="navbar-menu" onclick="toggleMenu()">
         <div class="hamburger">
@@ -129,10 +130,11 @@
     }
   
     .navbar-logo img {
-        width: 40px;
-        height: auto;
+        width: 5.3rem;
+        height: 5.3rem;
         vertical-align: middle;
     }
+    
   
     .navbar a {
         padding:3rem;
@@ -197,6 +199,8 @@
             margin-left: auto; /* Pushes the menu to the right */
             margin-bottom: 10px; /* Add spacing below menu */
         }
+
+        
   
   
         .navbar-links {
